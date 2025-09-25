@@ -25,7 +25,15 @@ class Character:
         self.frame = 8
         self.image_size = 150
     def update(self):
-        print('update')
+        # 이동
+        if self.dir == Direction.RIGHT:
+            self.x += self.speed
+        elif self.dir == Direction.LEFT:
+            self.x -= self.speed
+        elif self.dir == Direction.UP:
+            self.y += self.speed
+        elif self.dir == Direction.DOWN:
+            self.y -= self.speed
         self.frame = (self.frame + 1) % 8
     def render(self):
         self.animation_image.clip_draw(self.frame * 100, 100, 100, 100, self.x, self.y, self.image_size, self.image_size)
