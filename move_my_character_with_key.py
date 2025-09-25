@@ -24,6 +24,11 @@ class Character:
         self.animation_image = load_image('animation_sheet.png')
         self.frame = 8
 
+    def update(self):
+        print('update')
+    def render(self):
+        print('render')
+
 player = Character()
 running = True
 
@@ -64,8 +69,10 @@ def handle_events():
 while True:
     clear_canvas()
     tuk_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
+    player.update()
+    player.render()
     update_canvas()
-    print(player.dir)
+
     handle_events()
     if not running:
         break
