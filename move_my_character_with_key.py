@@ -25,6 +25,11 @@ class Character:
         self.frame = 8
         self.image_size = 150
     def update(self):
+        # 범위 밖으로 못 나가게
+        self.x = max(self.image_size // 2, min(self.x, TUK_WIDTH - self.image_size // 2))
+        self.y = max(self.image_size // 2, min(self.y, TUK_HEIGHT - self.image_size // 2))
+
+
         # 이동
         if self.dir == Direction.RIGHT:
             self.x += self.speed
