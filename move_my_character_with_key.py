@@ -23,11 +23,14 @@ class Character:
         self.speed = 10
         self.animation_image = load_image('animation_sheet.png')
         self.frame = 8
-
+        self.image_size = 150
     def update(self):
         print('update')
+        self.frame = (self.frame + 1) % 8
     def render(self):
-        print('render')
+        self.animation_image.clip_draw(self.frame * 100, 100, 100, 100, self.x, self.y, self.image_size, self.image_size)
+        delay(0.016)
+
 
 player = Character()
 running = True
@@ -76,5 +79,3 @@ while True:
     handle_events()
     if not running:
         break
-
-
