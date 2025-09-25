@@ -36,8 +36,31 @@ class Character:
             self.y -= self.speed
         self.frame = (self.frame + 1) % 8
     def render(self):
-        self.animation_image.clip_draw(self.frame * 100, 100, 100, 100, self.x, self.y, self.image_size, self.image_size)
-        delay(0.016)
+        # 애니메이션 렌더
+        if (self.dir == Direction.RIGHT):
+            self.animation_image.clip_draw(self.frame * 100, 100, 100, 100, self.x, self.y, self.image_size,
+                                           self.image_size)
+            delay(0.016)
+        elif (self.dir == Direction.LEFT):
+            self.animation_image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y, self.image_size,
+                                           self.image_size)
+            delay(0.016)
+        elif (self.dir == Direction.UP):
+            self.animation_image.clip_draw(self.frame * 100, 100, 100, 100, self.x, self.y, self.image_size,
+                                           self.image_size)
+            delay(0.016)
+        elif (self.dir == Direction.DOWN):
+            self.animation_image.clip_draw(self.frame * 100, 0, 100, 100, self.x, self.y, self.image_size,
+                                           self.image_size)
+            delay(0.016)
+        elif (self.dir == Direction.RIGHT_to_NONE):
+            self.animation_image.clip_draw(self.frame * 100, 300, 100, 100, self.x, self.y, self.image_size,
+                                           self.image_size)
+            delay(0.016)
+        elif (self.dir == Direction.LEFT_to_NONE):
+            self.animation_image.clip_draw(self.frame * 100, 200, 100, 100, self.x, self.y, self.image_size,
+                                           self.image_size)
+            delay(0.016)
 
 
 player = Character()
