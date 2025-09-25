@@ -34,6 +34,25 @@ def handle_events():
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_ESCAPE:
                 running = False
+            elif event.key == SDLK_RIGHT:
+                player.dir = Direction.RIGHT
+            elif event.key == SDLK_LEFT:
+                player.dir = Direction.LEFT
+            elif event.key == SDLK_UP:
+                player.dir = Direction.UP
+            elif event.key == SDLK_DOWN:
+                player.dir = Direction.DOWN
+        elif event.type == SDL_KEYUP:
+            if event.key == SDLK_RIGHT and player.dir == Direction.RIGHT:
+                player.dir = Direction.NONE
+            elif event.key == SDLK_LEFT and player.dir == Direction.LEFT:
+                player.dir = Direction.NONE
+            elif event.key == SDLK_UP and player.dir == Direction.UP:
+                player.dir = Direction.NONE
+            elif event.key == SDLK_DOWN and player.dir == Direction.DOWN:
+                player.dir = Direction.NONE
+
+
 
 
 
@@ -41,7 +60,7 @@ while True:
     clear_canvas()
     tuk_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
     update_canvas()
-
+    print(player.dir)
     handle_events()
     if not running:
         break
