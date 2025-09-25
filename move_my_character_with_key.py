@@ -7,17 +7,19 @@ open_canvas(TUK_WIDTH, TUK_HEIGHT)
 tuk_ground = load_image('TUK_GROUND.png')
 
 
+#방향 enum 클래스
 class Direction(Enum):
     RIGHT = 0
     LEFT = 1
     UP = 2
     DOWN = 3
-    NONE = 4
+    LEFT_to_NONE = 4
+    RIGHT_to_NONE = 5
 
 class Character:
     def __init__(self):
         self.x, self.y = TUK_WIDTH // 2, TUK_HEIGHT // 2
-        self.dir = Direction.NONE
+        self.dir = Direction.RIGHT_to_NONE
         self.speed = 10
         self.animation_image = load_image('animation_sheet.png')
         self.frame = 8
@@ -31,6 +33,7 @@ def handle_events():
     for event in events:
         if event.type == SDL_QUIT:
             running = False
+        #key down 처리
         elif event.type == SDL_KEYDOWN:
             if event.key == SDLK_ESCAPE:
                 running = False
@@ -42,15 +45,17 @@ def handle_events():
                 player.dir = Direction.UP
             elif event.key == SDLK_DOWN:
                 player.dir = Direction.DOWN
+        #key up 처리
         elif event.type == SDL_KEYUP:
             if event.key == SDLK_RIGHT and player.dir == Direction.RIGHT:
-                player.dir = Direction.NONE
+                player.dir = Direction.RIGHT_to_NONE
             elif event.key == SDLK_LEFT and player.dir == Direction.LEFT:
-                player.dir = Direction.NONE
+                player.dir = Direction.LEFT_to_NONE
             elif event.key == SDLK_UP and player.dir == Direction.UP:
-                player.dir = Direction.NONE
+                player.dir = Direction.RIGHT_to_NONE
             elif event.key == SDLK_DOWN and player.dir == Direction.DOWN:
-                player.dir = Direction.NONE
+                player.dir = Direction.LEFT_to_NONE
+
 
 
 
